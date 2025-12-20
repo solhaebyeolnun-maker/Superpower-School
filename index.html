@@ -1,280 +1,1963 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>서울시 특이능력 영재학교</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>서울시 특이능력 영재학교 · 공식 정보 포털</title>
+  <meta name="description" content="서울시 특이능력 영재학교(서특영) · Official Information Portal (Public Range)" />
+  <style>
+    :root{
+      --bg:#070A12;
+      --bg2:#0A0F1F;
+      --panel: rgba(255,255,255,.045);
+      --panel2: rgba(255,255,255,.03);
+      --line: rgba(255,255,255,.10);
+      --text:#EAF0FF;
+      --muted:#A9B3CF;
+      --accent:#7C5CFF;
+      --accent2:#1DE2FF;
+      --ok:#27E59B;
+      --warn:#FFB020;
+      --bad:#FF4D6D;
 
-<style>
-/* ===== 기본 설정 ===== */
-body{
-  margin:0;
-  font-family: "Noto Sans KR", Arial, sans-serif;
-  background:#f5f6f8;
-  color:#222;
-}
-a{ text-decoration:none; color:inherit; }
-button{ cursor:pointer; }
+      --r12:12px;
+      --r16:16px;
+      --r20:20px;
+      --shadow: 0 24px 80px rgba(0,0,0,.50);
 
-/* ===== 헤더 ===== */
-header{
-  background:#0f2a44;
-  color:#fff;
-}
-.header-top{
-  max-width:1200px;
-  margin:auto;
-  padding:16px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.school-name{
-  font-size:22px;
-  font-weight:700;
-}
-.login-btn{
-  background:#fff;
-  color:#0f2a44;
-  border:none;
-  padding:8px 14px;
-  border-radius:4px;
-  font-weight:600;
-}
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", Arial, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
 
-/* ===== 메뉴 ===== */
-nav{
-  background:#173a5e;
-}
-.nav-inner{
-  max-width:1200px;
-  margin:auto;
-  display:flex;
-}
-.nav-inner a{
-  padding:14px 18px;
-  color:#fff;
-  font-size:14px;
-}
-.nav-inner a:hover{
-  background:#0f2a44;
-}
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background:
+        radial-gradient(1000px 650px at 12% -10%, rgba(124,92,255,.35), transparent 58%),
+        radial-gradient(950px 650px at 88% 0%, rgba(29,226,255,.22), transparent 55%),
+        radial-gradient(1100px 700px at 50% 120%, rgba(39,229,155,.12), transparent 55%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+    }
+    a{ color:inherit; text-decoration:none; }
+    .container{ max-width:1200px; margin:0 auto; padding:0 18px; }
+    .row{ display:flex; gap:14px; flex-wrap:wrap; }
+    .hr{ height:1px; background:var(--line); margin:18px 0; }
+    .muted{ color:var(--muted); }
+    .mono{ font-family:var(--mono); }
+    .hidden{ display:none !important; }
+    .small{ font-size:12px; color:var(--muted); }
+    .kbd{ font-family:var(--mono); font-size:12px; border:1px solid var(--line); padding:2px 6px; border-radius:8px; background: rgba(255,255,255,.02); color: rgba(255,255,255,.75); }
 
-/* ===== 메인 ===== */
-main{
-  max-width:1200px;
-  margin:20px auto;
-  display:grid;
-  grid-template-columns: 2fr 1fr;
-  gap:20px;
-}
-section{
-  background:#fff;
-  border:1px solid #ddd;
-  padding:18px;
-}
+    /* Topbar */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      background: rgba(7,10,18,.72);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+    .topbar-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:12px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      min-width: 280px;
+    }
+    .seal{
+      width:40px; height:40px;
+      border-radius:14px;
+      display:grid; place-items:center;
+      background: linear-gradient(135deg, rgba(124,92,255,.85), rgba(29,226,255,.55));
+      box-shadow: 0 18px 45px rgba(124,92,255,.18);
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .brand-title{ font-weight:900; letter-spacing:-.4px; }
+    .brand-sub{ font-size:12px; color:var(--muted); margin-top:2px; }
 
-/* ===== 공통 제목 ===== */
-.section-title{
-  font-size:18px;
-  font-weight:700;
-  margin-bottom:12px;
-  border-left:4px solid #0f2a44;
-  padding-left:10px;
-}
+    .nav{
+      display:flex; gap:8px; flex-wrap:wrap;
+      align-items:center; justify-content:flex-end;
+    }
+    .pill{
+      padding:10px 12px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background: rgba(255,255,255,.03);
+      font-size:13px;
+      white-space:nowrap;
+      user-select:none;
+      cursor:pointer;
+    }
+    .pill:hover{ border-color: rgba(29,226,255,.45); }
+    .pill.active{ border-color: rgba(124,92,255,.6); box-shadow: 0 0 0 4px rgba(124,92,255,.12); }
+    .pill.locked{ border-color: rgba(255,176,32,.35); }
+    .pill.primary{
+      border-color: rgba(124,92,255,.55);
+      background: linear-gradient(135deg, rgba(124,92,255,.35), rgba(29,226,255,.12));
+    }
 
-/* ===== 공지사항 ===== */
-.notice ul{
-  padding-left:18px;
-}
-.notice li{
-  margin-bottom:8px;
-  font-size:14px;
-}
+    /* Hero */
+    .hero{ padding:24px 0 10px; }
+    .hero-card{
+      border:1px solid var(--line);
+      border-radius: var(--r20);
+      background:
+        radial-gradient(900px 520px at 10% 0%, rgba(124,92,255,.22), transparent 60%),
+        radial-gradient(900px 520px at 90% 0%, rgba(29,226,255,.16), transparent 58%),
+        rgba(255,255,255,.03);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
 
-/* ===== 급식 ===== */
-.meal table{
-  width:100%;
-  border-collapse:collapse;
-  font-size:14px;
-}
-.meal th, .meal td{
-  border:1px solid #ddd;
-  padding:8px;
-  text-align:center;
-}
-.meal th{
-  background:#f0f2f5;
-}
+    /* ===== Slider (A) ===== */
+    .slider{
+      position:relative;
+      border-bottom:1px solid var(--line);
+      background: rgba(0,0,0,.25);
+    }
+    .slides{
+      position:relative;
+      height: 340px;
+      overflow:hidden;
+    }
+    @media (max-width: 980px){
+      .slides{ height: 260px; }
+      .brand{ min-width: 0; }
+    }
+    .slide{
+      position:absolute; inset:0;
+      opacity:0;
+      transform: scale(1.02);
+      transition: opacity .55s ease, transform 1.2s ease;
+    }
+    .slide.active{
+      opacity:1;
+      transform: scale(1);
+    }
+    .slide img{
+      width:100%; height:100%;
+      object-fit:cover;
+      display:block;
+      filter: saturate(1.05) contrast(1.02);
+    }
+    .slide-overlay{
+      position:absolute; inset:0;
+      background:
+        linear-gradient(180deg, rgba(7,10,18,.05), rgba(7,10,18,.68)),
+        radial-gradient(900px 520px at 15% 0%, rgba(124,92,255,.18), transparent 60%),
+        radial-gradient(900px 520px at 85% 0%, rgba(29,226,255,.14), transparent 58%);
+      pointer-events:none;
+    }
+    .slide-caption{
+      position:absolute;
+      left:18px; right:18px; bottom:14px;
+      display:flex; gap:10px; flex-wrap:wrap; align-items:flex-end; justify-content:space-between;
+    }
+    .cap-title{
+      font-weight:900; letter-spacing:-.3px;
+      text-shadow: 0 10px 30px rgba(0,0,0,.45);
+    }
+    .cap-sub{
+      color: rgba(255,255,255,.78);
+      font-size:13px;
+      line-height:1.5;
+      max-width: 80ch;
+      text-shadow: 0 10px 30px rgba(0,0,0,.45);
+    }
+    .img-note{
+      font-size:12px;
+      color: rgba(255,255,255,.75);
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.22);
+      padding:6px 10px;
+      border-radius:999px;
+      backdrop-filter: blur(6px);
+    }
+    .slider-ui{
+      position:absolute;
+      inset: 0;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      pointer-events:none;
+    }
+    .slider-btn{
+      pointer-events:auto;
+      width:42px; height:42px;
+      border-radius:14px;
+      margin:0 10px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.20);
+      color: rgba(255,255,255,.92);
+      display:grid; place-items:center;
+      cursor:pointer;
+      backdrop-filter: blur(10px);
+    }
+    .slider-btn:hover{ border-color: rgba(29,226,255,.45); }
+    .dots{
+      position:absolute;
+      left:0; right:0; bottom:10px;
+      display:flex;
+      gap:8px;
+      justify-content:center;
+      pointer-events:auto;
+    }
+    .dotbtn{
+      width:10px; height:10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.12);
+      cursor:pointer;
+    }
+    .dotbtn.active{
+      background: rgba(124,92,255,.55);
+      border-color: rgba(124,92,255,.75);
+      box-shadow: 0 0 0 4px rgba(124,92,255,.16);
+    }
 
-/* ===== 일정 ===== */
-.calendar ul{
-  padding-left:18px;
-  font-size:14px;
-}
+    .hero-inner{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:0;
+    }
+    @media (max-width: 980px){
+      .hero-inner{ grid-template-columns:1fr; }
+    }
+    .hero-left{
+      padding:22px 22px 18px;
+      position:relative;
+    }
+    .kicker{
+      display:inline-flex; gap:10px; align-items:center;
+      padding:8px 10px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background: rgba(255,255,255,.03);
+      font-size:12px;
+      color: var(--muted);
+      font-family: var(--mono);
+    }
+    .dot{
+      width:8px; height:8px; border-radius:50%;
+      background: var(--ok);
+      box-shadow:0 0 0 6px rgba(39,229,155,.12);
+    }
+    h1{
+      margin:14px 0 10px;
+      font-size:40px;
+      line-height:1.08;
+      letter-spacing:-.8px;
+    }
+    .lead{ color:var(--muted); line-height:1.7; max-width:64ch; font-size:15px; }
 
-/* ===== 상담 ===== */
-form label{
-  display:block;
-  margin-top:10px;
-  font-size:14px;
-}
-form input, form select, form textarea{
-  width:100%;
-  padding:8px;
-  margin-top:4px;
-  border:1px solid #ccc;
-}
-form button{
-  margin-top:12px;
-  background:#0f2a44;
-  color:#fff;
-  border:none;
-  padding:10px;
-  width:100%;
-}
+    .hero-actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
+    .btn{
+      border:1px solid var(--line);
+      border-radius: 14px;
+      padding:12px 14px;
+      background: rgba(255,255,255,.04);
+      font-weight:800;
+      display:inline-flex; gap:10px; align-items:center; justify-content:center;
+      cursor:pointer;
+      user-select:none;
+    }
+    .btn:hover{ transform: translateY(-1px); }
+    .btn:active{ transform: translateY(0); }
+    .btn.primary{
+      border-color: rgba(124,92,255,.55);
+      background: linear-gradient(135deg, rgba(124,92,255,.55), rgba(29,226,255,.12));
+      box-shadow: 0 18px 45px rgba(124,92,255,.18);
+    }
+    .btn.warn{
+      border-color: rgba(255,176,32,.45);
+      background: rgba(255,176,32,.10);
+    }
 
-/* ===== 푸터 ===== */
-footer{
-  background:#e9ecef;
-  text-align:center;
-  font-size:13px;
-  padding:20px;
-  margin-top:40px;
-}
+    .hero-right{
+      border-left:1px solid var(--line);
+      background:
+        radial-gradient(700px 520px at 10% 0%, rgba(29,226,255,.10), transparent 58%),
+        rgba(255,255,255,.02);
+      padding:18px;
+    }
+    @media (max-width: 980px){
+      .hero-right{ border-left:none; border-top:1px solid var(--line); }
+    }
+    .panel{
+      border:1px solid var(--line);
+      border-radius: var(--r16);
+      background: rgba(255,255,255,.03);
+      padding:14px;
+    }
+    .panel h3{ margin:0 0 10px; letter-spacing:-.2px; }
+    .meta{ font-size:13px; color:var(--muted); line-height:1.65; }
 
-/* ===== 로그인 모달 ===== */
-.modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.4);
-}
-.modal-content{
-  background:#fff;
-  max-width:400px;
-  margin:120px auto;
-  padding:20px;
-}
-.modal-content h3{
-  margin-top:0;
-}
-</style>
+    /* Grid cards */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:14px;
+      margin:14px 0 30px;
+    }
+    .card{
+      border:1px solid var(--line);
+      border-radius: var(--r20);
+      background: rgba(255,255,255,.03);
+      padding:18px;
+      box-shadow: 0 18px 55px rgba(0,0,0,.22);
+    }
+    .card h2, .card h3{ margin:0 0 10px; letter-spacing:-.3px; }
+    .col-12{ grid-column: span 12; }
+    .col-8{ grid-column: span 8; }
+    .col-6{ grid-column: span 6; }
+    .col-4{ grid-column: span 4; }
+    @media (max-width: 980px){
+      .col-8,.col-6,.col-4{ grid-column: span 12; }
+    }
+
+    .tagrow{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+    .tag{
+      font-family: var(--mono);
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      color: var(--muted);
+    }
+    .notice{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:14px;
+      border-radius: var(--r16);
+      border:1px solid rgba(255,176,32,.30);
+      background: rgba(255,176,32,.10);
+      margin-top:12px;
+    }
+    .notice strong{ color:#FFD08A; }
+    ul.clean{ margin:10px 0 0; padding-left:18px; color:var(--muted); line-height:1.7; }
+    .footer{ padding:28px 0 40px; color:var(--muted); font-size:13px; }
+
+    /* Sections */
+    .section{ scroll-margin-top: 92px; }
+    .section-title{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:12px;
+      margin:18px 0 10px;
+    }
+    .section-title h2{ margin:0; font-size:24px; letter-spacing:-.4px; }
+    .section-title .right{ display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
+
+    /* Modal */
+    .modal-backdrop{
+      position:fixed; inset:0;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(8px);
+      display:none;
+      z-index:100;
+      padding:18px;
+    }
+    .modal{
+      max-width: 760px;
+      margin: 6vh auto 0;
+      border:1px solid var(--line);
+      border-radius: var(--r20);
+      background:
+        radial-gradient(900px 520px at 10% 0%, rgba(124,92,255,.18), transparent 60%),
+        rgba(10,15,31,.92);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .modal-head{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 16px;
+      border-bottom:1px solid var(--line);
+      gap:10px;
+    }
+    .modal-head .title{ font-weight:900; letter-spacing:-.2px; }
+    .iconbtn{
+      width:36px; height:36px; border-radius:12px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      display:grid; place-items:center;
+      cursor:pointer;
+    }
+    .modal-body{ padding:16px; }
+    .formrow{ display:flex; gap:10px; flex-wrap:wrap; }
+    .input{
+      width:100%;
+      padding:12px 12px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      outline:none;
+    }
+    .input:focus{ border-color: rgba(29,226,255,.55); box-shadow: 0 0 0 4px rgba(29,226,255,.12); }
+    .select{
+      width:100%;
+      padding:12px 12px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      outline:none;
+    }
+    .two{ flex: 1 1 280px; }
+    .hint{
+      margin-top:10px;
+      padding:12px;
+      border-radius: 14px;
+      border:1px solid rgba(29,226,255,.22);
+      background: rgba(29,226,255,.07);
+      color: rgba(255,255,255,.82);
+      font-size:13px;
+      line-height:1.55;
+    }
+    .error{
+      border-color: rgba(255,77,109,.35) !important;
+      background: rgba(255,77,109,.10) !important;
+    }
+
+    /* Board (B) */
+    .board{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      overflow:hidden;
+      border:1px solid var(--line);
+      border-radius: var(--r16);
+      background: rgba(255,255,255,.02);
+    }
+    .board th, .board td{
+      padding:10px 12px;
+      border-bottom:1px solid var(--line);
+      font-size:13px;
+      text-align:left;
+    }
+    .board th{ color: var(--muted); font-family:var(--mono); font-size:12px; }
+    .board tr:last-child td{ border-bottom:none; }
+    .board .titlecell{
+      cursor:pointer;
+      color: rgba(255,255,255,.92);
+    }
+    .board .titlecell:hover{
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .badge{
+      font-family:var(--mono);
+      font-size:12px;
+      padding:4px 8px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.02);
+      color: var(--muted);
+      display:inline-block;
+    }
+    .badge.hot{ border-color: rgba(255,176,32,.35); background: rgba(255,176,32,.10); color:#FFD08A; }
+    .badge.sec{ border-color: rgba(39,229,155,.25); background: rgba(39,229,155,.08); color: rgba(200,255,235,.92); }
+
+    /* Chat */
+    .chat-shell{
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap:14px;
+    }
+    @media (max-width: 980px){
+      .chat-shell{ grid-template-columns:1fr; }
+    }
+    .chat-box{ display:flex; flex-direction:column; min-height:560px; }
+    .chat-log{
+      flex:1;
+      overflow:auto;
+      padding:14px;
+      border:1px solid var(--line);
+      border-radius: var(--r16);
+      background:
+        radial-gradient(800px 520px at 20% 0%, rgba(124,92,255,.10), transparent 60%),
+        rgba(255,255,255,.02);
+    }
+    .msg{ display:flex; gap:10px; align-items:flex-start; margin:10px 0; }
+    .msg.me{ justify-content:flex-end; }
+    .bubble{
+      max-width:78ch;
+      padding:12px 12px;
+      border-radius: 16px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      line-height:1.6;
+    }
+    .msg.me .bubble{
+      border-color: rgba(124,92,255,.28);
+      background: linear-gradient(135deg, rgba(124,92,255,.26), rgba(29,226,255,.10));
+    }
+    .msg.sys .bubble{
+      font-family:var(--mono);
+      font-size:12px;
+      color: rgba(255,255,255,.74);
+      background: rgba(255,255,255,.02);
+    }
+    .chat-input{ display:flex; gap:10px; margin-top:12px; }
+    .quick{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+    .quick button{
+      cursor:pointer;
+      font-family:var(--mono);
+      font-size:12px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      color: var(--muted);
+    }
+    .quick button:hover{ border-color: rgba(29,226,255,.55); color: var(--text); }
+
+    /* World lock */
+    .lockbox{
+      border:1px solid rgba(255,176,32,.35);
+      background: rgba(255,176,32,.08);
+      border-radius: var(--r20);
+      padding:18px;
+    }
+    .lockbox h3{ margin:0 0 8px; }
+    .world-content{
+      border:1px solid var(--line);
+      border-radius: var(--r20);
+      background: rgba(255,255,255,.03);
+      padding:18px;
+    }
+    .worldgrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      margin-top:14px;
+    }
+    @media (max-width: 980px){
+      .worldgrid{ grid-template-columns:1fr; }
+    }
+    .table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      overflow:hidden;
+      border:1px solid var(--line);
+      border-radius: var(--r16);
+    }
+    .table th, .table td{
+      padding:10px 12px;
+      border-bottom:1px solid var(--line);
+      color: rgba(255,255,255,.86);
+      font-size:13px;
+      text-align:left;
+    }
+    .table th{ color: var(--muted); font-family:var(--mono); font-size:12px; }
+    .table tr:last-child td{ border-bottom:none; }
+
+    /* Dashboard (C) */
+    .statusbar{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+      margin-top:12px;
+    }
+    .chip{
+      display:inline-flex; gap:8px; align-items:center;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      font-size:12px;
+      color: var(--muted);
+      font-family: var(--mono);
+    }
+    .chip b{ color: var(--text); font-family: var(--sans); }
+
+    .tabs{
+      display:flex; gap:8px; flex-wrap:wrap;
+      margin-top:10px;
+    }
+    .tab{
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      font-size:12px;
+      color: var(--muted);
+      cursor:pointer;
+      font-family: var(--mono);
+    }
+    .tab.active{
+      color: rgba(255,255,255,.92);
+      border-color: rgba(124,92,255,.65);
+      box-shadow: 0 0 0 4px rgba(124,92,255,.12);
+      background: rgba(124,92,255,.10);
+    }
+    .dashgrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      margin-top:14px;
+    }
+    @media (max-width: 980px){
+      .dashgrid{ grid-template-columns:1fr; }
+    }
+    .metric{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:10px;
+    }
+    .metric .v{ font-size:26px; font-weight:900; letter-spacing:-.6px; }
+    .bar{
+      height:10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      overflow:hidden;
+      margin-top:10px;
+    }
+    .bar > div{
+      height:100%;
+      width:0%;
+      background: linear-gradient(90deg, rgba(124,92,255,.75), rgba(29,226,255,.45));
+    }
+
+    /* Print-friendly */
+    @media print{
+      .topbar, .slider-ui, .quick, #loginBtn{ display:none !important; }
+      body{ background:white; color:black; }
+    }
+  </style>
 </head>
 
 <body>
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#home" data-nav>
+        <div class="seal" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2l8 4v6c0 5-3.4 9.4-8 10-4.6-.6-8-5-8-10V6l8-4z" stroke="rgba(255,255,255,.92)" stroke-width="1.6"/>
+            <path d="M8.2 11.8l2.1 2.1 5.6-5.6" stroke="rgba(255,255,255,.92)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="brand-title">서울시 특이능력 영재학교</div>
+          <div class="brand-sub">Official Information Portal · <span class="mono">Public Range</span></div>
+        </div>
+      </a>
 
-<header>
-  <div class="header-top">
-    <div class="school-name">서울시 특이능력 영재학교</div>
-    <button class="login-btn" onclick="openLogin()">로그인</button>
-  </div>
-</header>
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="pill" href="#about" data-nav>학교 소개</a>
+        <a class="pill" href="#education" data-nav>교육 활동</a>
+        <a class="pill" href="#notice" data-nav>알림마당</a>
+        <a class="pill" href="#support" data-nav>학습/상담</a>
+        <a class="pill" href="#admin" data-nav>행정/정보공개</a>
+        <a class="pill" href="#portal" data-nav>포털</a>
+        <a class="pill primary" href="#chat" data-nav>입학상담 AI</a>
+        <a class="pill locked" href="#world" data-nav id="worldNav">세계관(Restricted)</a>
+        <button class="pill" id="loginBtn" type="button">로그인</button>
+      </nav>
+    </div>
+  </header>
 
-<nav>
-  <div class="nav-inner">
-    <a href="#">학교소개</a>
-    <a href="#">교육활동</a>
-    <a href="#">알림마당</a>
-    <a href="#">입학안내</a>
-    <a href="#">학부모마당</a>
-    <a href="#">학생마당</a>
-  </div>
-</nav>
+  <!-- Hero -->
+  <main class="container hero" id="home">
+    <section class="hero-card">
 
-<main>
-  <!-- 왼쪽 -->
-  <div>
-    <section class="notice">
-      <div class="section-title">공지사항</div>
-      <ul>
-        <li>[공지] 2025학년도 신입생 입학 설명회 안내</li>
-        <li>[안전] 기숙사 생활 안전 수칙 안내</li>
-        <li>[학사] 1학기 중간 평가 일정 공지</li>
-      </ul>
+      <!-- A) Main Slider -->
+      <div class="slider" aria-label="캠퍼스 이미지 슬라이더">
+        <div class="slides" id="slides">
+          <!-- data-uri images are embedded for single-file deployment -->
+          <figure class="slide active" data-index="0">
+            <img alt="서특영 교정(야간) · 연출 이미지" src="data:image/webp;base64,UklGRrQyAwBXRUJQVlA4IKgyAwAw7QCdASqACgAJPm02l0kkIyIhKAgA4CcJaQAAXlDFoVFDZ7d9+2c47iCe+g9xP9R7t3kC8v3+S0vQq2+u3lKqv9w0Dg8zv7w3v7lX4l5H3n4cXHc0mF0pGk3w1V7mO1fU1Q9QvQ+R8WmKkBq0u6o5q5oGqgCwZ0uQY2Z1vU2p+o9f2y+WcXk7zVqC6yQ0x0qK5kTj8U6Yz0p2qE0Zp0Qxw4dG1b2d8Y+QbEwq8R4bK8x5o0m5eZ0oYJm2Gx3G1V4U3c6Z1mWm+gY6G1mQm0s2eYw0m4mC0k8mXrV8dEw8f2t7B2vWc7b6n1u2oN0Y3k2pWQw8Y2cP1p3l4f8YqJmVh0Z0v0k8b9pV9o0m1mYw9mQqg+o8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg==" />
+            <div class="slide-overlay"></div>
+            <div class="slide-caption">
+              <div>
+                <div class="cap-title">캠퍼스 전경 · 야간</div>
+                <div class="cap-sub">공개 범위 안내용 이미지(연출). 실제 기관과 무관합니다.</div>
+              </div>
+              <div class="img-note">※ 이미지: 임시 시안(추후 교체 예정)</div>
+            </div>
+          </figure>
+
+          <figure class="slide" data-index="1">
+            <img alt="중앙홀 로비 · 연출 이미지" src="data:image/webp;base64,UklGRlQdAgBXRUJQVlA4IEgdAgAw0gCdASqACgAJPm02l0kkIyIhKAgA4CcJaQAAXi8I5WQzqg8O6w1Gm5q3eZlqK9s7z0i7yF0n4w9Qh0v8Y9S0k0mO2n0wXGm9a3y8gkYv1o0wq7l8zKx4G2JmFz0o2sYQw1k7b1o0qk3dYw0m3kE0k8p5dV9c0k8YqJmVh0Z0v0k8b9pV9o0m1mYw9mQqg+o8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg==" />
+            <div class="slide-overlay"></div>
+            <div class="slide-caption">
+              <div>
+                <div class="cap-title">중앙홀 · 로비</div>
+                <div class="cap-sub">행정·안내·보안 동선이 교차하는 구역(연출).</div>
+              </div>
+              <div class="img-note">※ 이미지: 임시 시안(추후 교체 예정)</div>
+            </div>
+          </figure>
+
+          <figure class="slide" data-index="2">
+            <img alt="기숙사 라운지 · 연출 이미지" src="data:image/webp;base64,UklGRrQhAgBXRUJQVlA4IKwhAgAw0wCdASqACgAJPm02l0kkIyIhKAgA4CcJaQAAXh0v1xqg0zqkq1r6mYcYwq8G1q0mWn0l5dWw7mJv0n0pZ2mZ0m3mYw9mQqg+o8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg+8mF8gYw8j+g7fOQ5nSxvP0lV0n0c8mJkqg==" />
+            <div class="slide-overlay"></div>
+            <div class="slide-caption">
+              <div>
+                <div class="cap-title">기숙사 라운지</div>
+                <div class="cap-sub">자율학습·휴게 공간(연출). 공용 시설은 안전 규정에 따라 운영됩니다.</div>
+              </div>
+              <div class="img-note">※ 이미지: 임시 시안(추후 교체 예정)</div>
+            </div>
+          </figure>
+        </div>
+
+        <div class="slider-ui" aria-hidden="false">
+          <button class="slider-btn" id="prevBtn" type="button" aria-label="이전 슬라이드">‹</button>
+          <button class="slider-btn" id="nextBtn" type="button" aria-label="다음 슬라이드">›</button>
+          <div class="dots" id="dots" aria-label="슬라이드 선택"></div>
+        </div>
+      </div>
+
+      <div class="hero-inner">
+        <div class="hero-left">
+          <div class="kicker"><span class="dot"></span> PUBLIC RANGE · ACCESS CONTROLLED CONTENT AVAILABLE</div>
+          <h1>평범한 교정,<br>비범한 관리 체계.</h1>
+          <div class="lead">
+            2035년 전후 대한민국. 능력은 존재하며, 관측되고, 관리됩니다.<br>
+            본 포털은 <b>서울시 특이능력 영재학교(서특영)</b>의 공개 범위 정보를 제공합니다.
+            <br><span class="small">※ 본 사이트는 <b>창작 세계관</b> 기반의 가상 기관 페이지입니다.</span>
+          </div>
+
+          <div class="hero-actions">
+            <button class="btn primary" type="button" data-jump="#chat">입학상담 AI 열기</button>
+            <button class="btn" type="button" data-jump="#notice">공지 바로가기</button>
+            <button class="btn warn" type="button" data-jump="#world">세계관 문서(비번)</button>
+          </div>
+
+          <div class="statusbar">
+            <span class="chip">접속 상태: <b id="who">GUEST</b></span>
+            <span class="chip">권한: <b id="clearance">PUBLIC</b></span>
+            <span class="chip">규정: <b>무단 능력 사용 금지</b></span>
+          </div>
+        </div>
+
+        <aside class="hero-right">
+          <div class="panel">
+            <h3>오늘의 안내</h3>
+            <div class="meta">
+              - 22:00 이후 기숙사 외부 적발 시 벌점<br>
+              - 한강 주변 단독 출입 금지<br>
+              - 훈련/수업 외 무단 능력 사용 금지
+            </div>
+            <div class="notice">
+              <div>⚠️</div>
+              <div>
+                <strong>안전 공지</strong><br>
+                본 포털은 “공개 가능한 정보”만 제공하며, 보안 구역 정보는 제한됩니다.
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
     </section>
 
-    <section class="meal">
-      <div class="section-title">오늘의 급식</div>
-      <table>
-        <tr><th>구분</th><th>메뉴</th></tr>
-        <tr><td>중식</td><td>쌀밥 / 불고기 / 미역국 / 김치</td></tr>
-        <tr><td>석식</td><td>카레라이스 / 샐러드 / 우유</td></tr>
-      </table>
+    <!-- Sections -->
+    <section class="grid">
+
+      <!-- About -->
+      <div class="card col-12 section" id="about">
+        <div class="section-title">
+          <h2>1. 학교 소개 <span class="muted">(About School)</span></h2>
+          <div class="right">
+            <span class="tag">학교장 인사</span>
+            <span class="tag">연혁/상징</span>
+            <span class="tag">현황</span>
+            <span class="tag">오시는 길</span>
+          </div>
+        </div>
+        <div class="grid" style="margin:0">
+          <div class="card col-6" style="background:rgba(255,255,255,.02)">
+            <h3>인사말</h3>
+            <div class="meta">
+              서특영은 능력자의 사회적 통합과 안전을 최우선 가치로 삼습니다.
+              학생 개개인의 잠재를 “전력”이 아닌 “책임 있는 역량”으로 전환하는 교육을 지향합니다.
+              <div class="hr"></div>
+              <span class="mono">학교장</span> · <b>운영 방침</b>: 안전 · 윤리 · 실전 역량 · 공공성
+            </div>
+          </div>
+          <div class="card col-6" style="background:rgba(255,255,255,.02)">
+            <h3>연혁 및 상징</h3>
+            <div class="meta">
+              - 2030 비공개 개교<br>
+              - 2033 특성화 영재고로 부분 공개<br>
+              - 2035 통합 실전 커리큘럼 개편
+              <div class="hr"></div>
+              <b>교훈</b>: “힘은 절제에서 시작된다”<br>
+              <b>교목</b>: 은행나무(기억과 지속) · <b>교화</b>: 백목련(절제와 품격)
+            </div>
+          </div>
+
+          <div class="card col-8" style="background:rgba(255,255,255,.02)">
+            <h3>현황</h3>
+            <div class="meta">
+              - 학제: 7학년제(설정) / 학년당 120명 / 최대 1200명<br>
+              - 교직원: 운영/교육/연구/안전 전담 인력 포함(공개 범위)<br>
+              - 시설: 본관 · 강당 · 체육관 · 운동장 · 기숙사 · 실습동 · 연구동 · 중앙홀
+            </div>
+            <div class="tagrow">
+              <span class="tag">CCTV</span><span class="tag">위상 센서</span><span class="tag">훈련장</span><span class="tag">의료실</span>
+            </div>
+          </div>
+
+          <div class="card col-4" style="background:rgba(255,255,255,.02)">
+            <h3>오시는 길</h3>
+            <div class="meta">
+              서울 동북부 재개발 구역(설정). 방문은 <b>사전 승인</b>이 필요합니다.<br>
+              <div class="hr"></div>
+              대중교통 안내(연출):<br>
+              - 광역버스 “N-07” 하차<br>
+              - 보안 게이트 통과 후 캠퍼스 진입
+              <div class="hr"></div>
+              <span class="small">※ 지도/경로는 실제 위치가 아닌 세계관 연출입니다.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div class="card col-12 section" id="education">
+        <div class="section-title">
+          <h2>2. 교육 활동 <span class="muted">(Educational Activities)</span></h2>
+          <div class="right">
+            <span class="tag">교육과정</span><span class="tag">특색교육</span><span class="tag">창체</span><span class="tag">학사일정</span>
+          </div>
+        </div>
+        <div class="grid" style="margin:0">
+          <div class="card col-6" style="background:rgba(255,255,255,.02)">
+            <h3>교육과정</h3>
+            <div class="meta">
+              일반 교과(국·영·수·과·사) 심화 + 대학 수준 확장 과정.  
+              평가 체계는 지식·윤리·현장 대응력을 함께 반영합니다.
+              <ul class="clean">
+                <li>학년별 교과 운영 계획(공개 범위)</li>
+                <li>성취도 평가 + 역량 기반 수행평가</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card col-6" style="background:rgba(255,255,255,.02)">
+            <h3>특색 교육</h3>
+            <div class="meta">
+              학교 중점 사업(연출):
+              <ul class="clean">
+                <li>위상 공명 기반 능력 제어 훈련</li>
+                <li>전술 응용/정보·잠입전술(실전 지향)</li>
+                <li>AI 기반 상황분석(안전 시뮬레이션)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card col-6" style="background:rgba(255,255,255,.02)">
+            <h3>창의적 체험활동</h3>
+            <div class="meta">
+              자율 · 봉사 · 동아리 · 진로 활동.
+              <div class="hr"></div>
+              동아리(예시): 전투 실전 동아리 / 능연회(연구회) / 배달부 클럽(…왜 있는지는 묻지 마)
+            </div>
+          </div>
+          <div class="card col-6" style="background:rgba(255,255,255,.02)">
+            <h3>학사 일정</h3>
+            <div class="meta">
+              - 3월: 오리엔테이션 / 기초 제어 평가<br>
+              - 6월: 교내 능력 리그(학기말)<br>
+              - 8월: 합숙 캠프/수련회(설정)<br>
+              - 11월: 라이벌 학교 교류전
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notice (B) -->
+      <div class="card col-12 section" id="notice">
+        <div class="section-title">
+          <h2>3. 알림마당 <span class="muted">(Notice Board)</span></h2>
+          <div class="right">
+            <span class="tag">공지사항</span><span class="tag">가정통신문</span><span class="tag">학교소식</span><span class="tag">입학안내</span>
+          </div>
+        </div>
+        <div class="grid" style="margin:0">
+          <div class="card col-8" style="background:rgba(255,255,255,.02)">
+            <h3>공지사항</h3>
+            <table class="board" aria-label="공지사항 게시판">
+              <thead>
+                <tr>
+                  <th style="width:110px">일자</th>
+                  <th>제목</th>
+                  <th style="width:90px">구분</th>
+                </tr>
+              </thead>
+              <tbody id="noticeTbody"></tbody>
+            </table>
+            <div class="small" style="margin-top:10px">
+              * 게시물은 정적(샘플)이며, 클릭 시 내용이 열립니다.
+            </div>
+          </div>
+
+          <div class="card col-4" style="background:rgba(255,255,255,.02)">
+            <h3>입학 안내</h3>
+            <div class="meta">
+              - 비공개 스카우트 + 위상 공명 테스트 기반 선발<br>
+              - 합격자 대상 오리엔테이션에서 세부 안내
+              <div class="hr"></div>
+              <button class="btn primary" type="button" data-jump="#chat">입학상담 AI로 문의</button>
+            </div>
+          </div>
+
+          <div class="card col-6" style="background:rgba(255,255,255,.02)">
+            <h3>가정통신문</h3>
+            <table class="board" aria-label="가정통신문 게시판">
+              <thead>
+                <tr>
+                  <th style="width:110px">일자</th>
+                  <th>제목</th>
+                  <th style="width:90px">대상</th>
+                </tr>
+              </thead>
+              <tbody id="letterTbody"></tbody>
+            </table>
+            <div class="small" style="margin-top:10px">
+              * “회신 기능”은 포털(로그인)에서 상담 신청 형태로 연출됩니다.
+            </div>
+          </div>
+
+          <div class="card col-6" style="background:rgba(255,255,255,.02)">
+            <h3>학교 소식</h3>
+            <div class="meta">
+              행사/보도자료 영역(연출).  
+              이미지(행사 사진)만 추가해도 “진짜 학교 사이트” 느낌이 확 올라갑니다.
+              <div class="hr"></div>
+              <span class="badge sec">TIP</span>
+              <span class="small">메인 슬라이더 이미지를 “행사 사진”으로 재활용해도 좋음.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Support -->
+      <div class="card col-12 section" id="support">
+        <div class="section-title">
+          <h2>4. 학습/상담 지원 <span class="muted">(Learning & Support)</span></h2>
+          <div class="right">
+            <span class="tag">급식</span><span class="tag">자료실</span><span class="tag">Wee</span><span class="tag">도서관</span>
+          </div>
+        </div>
+        <div class="grid" style="margin:0">
+          <div class="card col-6" style="background:rgba(255,255,255,.02)">
+            <h3>급식 식단</h3>
+            <div class="meta">
+              오늘의 식단(연출):  
+              - A코스: 고단백/저자극(훈련일)<br>
+              - B코스: 일반식(기숙사 표준)<br>
+              - 알레르기/원산지 표시는 추후 확장 가능
+            </div>
+          </div>
+          <div class="card col-6" style="background:rgba(255,255,255,.02)">
+            <h3>학습 자료실</h3>
+            <div class="meta">
+              교과별 보조 자료/과제 게시판(연출).  
+              GitHub Pages는 서버가 없으니 “링크형 자료실”이 현실적입니다.
+            </div>
+          </div>
+          <div class="card col-6" style="background:rgba(255,255,255,.02)">
+            <h3>Wee 클래스</h3>
+            <div class="meta">
+              정서 지원/상담 신청(연출).  
+              아래 <b>포털</b>에서 상담 신청 UI 제공.
+            </div>
+          </div>
+          <div class="card col-6" style="background:rgba(255,255,255,.02)">
+            <h3>도서관</h3>
+            <div class="meta">
+              도서 검색/대출 현황 연결(연출).  
+              원하면 “정적 검색 UI(샘플 DB)”도 붙일 수 있음.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Administration -->
+      <div class="card col-12 section" id="admin">
+        <div class="section-title">
+          <h2>5. 정보 공개 및 행정 <span class="muted">(Administration)</span></h2>
+          <div class="right">
+            <span class="tag">운영위원회</span><span class="tag">예결산</span><span class="tag">정보공시</span>
+          </div>
+        </div>
+        <div class="grid" style="margin:0">
+          <div class="card col-4" style="background:rgba(255,255,255,.02)">
+            <h3>학교 운영위원회</h3>
+            <div class="meta">
+              회의록/운영 결과 공개(연출).  
+              게시판 형태로 확장 가능.
+            </div>
+          </div>
+          <div class="card col-4" style="background:rgba(255,255,255,.02)">
+            <h3>예·결산 현황</h3>
+            <div class="meta">
+              회계 투명 공개(연출).  
+              표/그래프 UI를 붙일 수 있음.
+            </div>
+          </div>
+          <div class="card col-4" style="background:rgba(255,255,255,.02)">
+            <h3>정보공시</h3>
+            <div class="meta">
+              “학교알리미” 링크 영역(연출).  
+              실제 링크 대신 세계관 공시 포맷으로도 구성 가능.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Portal Dashboard (C) -->
+      <div class="card col-12 section" id="portal">
+        <div class="section-title">
+          <h2>포털 <span class="muted">(Student / Parent Dashboard)</span></h2>
+          <div class="right">
+            <span class="tag">출결</span><span class="tag">성적</span><span class="tag">상담 신청</span>
+          </div>
+        </div>
+
+        <div class="meta">
+          이 영역은 <b>로그인</b> 시 “학생/학부모” 관점 UI가 활성화됩니다.  
+          <span class="small">* GitHub Pages(정적) 특성상 실제 연동 대신 “포털처럼 보이게” 구현된 화면입니다.</span>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="포털 탭">
+          <button class="tab active" data-tab="att" type="button">출결</button>
+          <button class="tab" data-tab="grade" type="button">성적</button>
+          <button class="tab" data-tab="counsel" type="button">상담 신청</button>
+        </div>
+
+        <div id="portalGate" class="notice" style="margin-top:14px">
+          <div>🔒</div>
+          <div>
+            <strong>포털 접근 안내</strong><br>
+            현재 <b>GUEST</b> 상태입니다. “로그인 → 학생/학부모”로 들어오면 대시보드가 열립니다.
+          </div>
+        </div>
+
+        <div id="portalBody" class="hidden">
+          <div class="dashgrid">
+            <div class="card" style="background:rgba(255,255,255,.02)">
+              <div class="metric">
+                <div>
+                  <div class="small mono">ATTENDANCE RATE</div>
+                  <div class="v" id="attRate">—</div>
+                </div>
+                <span class="badge sec" id="attFlag">NORMAL</span>
+              </div>
+              <div class="bar"><div id="attBar"></div></div>
+              <div class="small" style="margin-top:10px" id="attHint">—</div>
+            </div>
+
+            <div class="card" style="background:rgba(255,255,255,.02)">
+              <div class="metric">
+                <div>
+                  <div class="small mono">CURRENT TERM GPA</div>
+                  <div class="v" id="gpa">—</div>
+                </div>
+                <span class="badge" id="gradeFlag">PUBLIC</span>
+              </div>
+              <div class="bar"><div id="gpaBar"></div></div>
+              <div class="small" style="margin-top:10px" id="gpaHint">—</div>
+            </div>
+          </div>
+
+          <div id="tab_att" style="margin-top:14px">
+            <table class="table" aria-label="출결 상세">
+              <tr><th>이번 달 출석</th><td id="attRow1">—</td></tr>
+              <tr><th>지각/조퇴</th><td id="attRow2">—</td></tr>
+              <tr><th>결석</th><td id="attRow3">—</td></tr>
+              <tr><th>비고</th><td class="muted">* 안전 규정/훈련 일정에 따라 출결 코드가 별도 적용될 수 있습니다(연출).</td></tr>
+            </table>
+          </div>
+
+          <div id="tab_grade" class="hidden" style="margin-top:14px">
+            <table class="table" aria-label="성적 상세">
+              <tr><th>국어</th><td id="g1">—</td></tr>
+              <tr><th>수학</th><td id="g2">—</td></tr>
+              <tr><th>과학</th><td id="g3">—</td></tr>
+              <tr><th>특능 제어</th><td id="g4">—</td></tr>
+              <tr><th>비고</th><td class="muted">* 세부 평정(실전/보안 항목)은 공개 범위 외(연출).</td></tr>
+            </table>
+          </div>
+
+          <div id="tab_counsel" class="hidden" style="margin-top:14px">
+            <div class="grid" style="margin:0">
+              <div class="card col-6" style="background:rgba(255,255,255,.02)">
+                <h3>상담 신청</h3>
+                <div class="meta">간단 입력 → 신청 내역이 <span class="mono">브라우저에 저장</span>됩니다(연출).</div>
+                <div class="formrow" style="margin-top:12px">
+                  <div class="two">
+                    <div class="small">유형</div>
+                    <select class="select" id="cType">
+                      <option value="WEE">Wee 클래스(정서)</option>
+                      <option value="ACADEMIC">학습/진로</option>
+                      <option value="DORM">기숙사 생활</option>
+                      <option value="SAFETY">안전/규정</option>
+                    </select>
+                  </div>
+                  <div class="two">
+                    <div class="small">희망 일시</div>
+                    <input class="input" id="cWhen" placeholder="예: 2035-04-12 16:30" />
+                  </div>
+                  <div style="flex:1 1 100%">
+                    <div class="small">내용</div>
+                    <input class="input" id="cMsg" placeholder="간단히 적어 주세요(예: 불면/불안, 학습 진도, 기숙사 룸메 등)" />
+                  </div>
+                </div>
+                <div class="row" style="margin-top:12px">
+                  <button class="btn primary" id="cSubmit" type="button">신청</button>
+                  <button class="btn" id="cClear" type="button">내역 삭제</button>
+                </div>
+              </div>
+
+              <div class="card col-6" style="background:rgba(255,255,255,.02)">
+                <h3>신청 내역</h3>
+                <div class="meta">아래 내역은 서버가 아닌 <b>로컬 저장</b>입니다.</div>
+                <div class="hr"></div>
+                <div id="cList" class="meta">—</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chat -->
+      <div class="card col-12 section" id="chat">
+        <div class="section-title">
+          <h2>입학상담 AI <span class="muted">(Scripted Chat)</span></h2>
+          <div class="right">
+            <span class="tag">서버 없음</span><span class="tag">세계관 기반</span><span class="tag">공개 범위</span>
+          </div>
+        </div>
+
+        <div class="chat-shell">
+          <div class="chat-box">
+            <div id="chatLog" class="chat-log"></div>
+            <div class="chat-input">
+              <input id="chatInput" class="input" placeholder="예: 입학 전형이 어떻게 돼요?" />
+              <button class="btn primary" id="sendBtn" type="button">전송</button>
+            </div>
+            <div class="quick">
+              <button data-quick="입학 전형 요약">입학 전형</button>
+              <button data-quick="기숙사 규칙 알려줘">기숙사</button>
+              <button data-quick="A급이랑 S급 차이">등급</button>
+              <button data-quick="한강 브레이크 사건 요약">브레이크</button>
+              <button data-quick="아이리스는 어떤 학생이야?">아이리스</button>
+              <button data-quick="제어기 원리 알려줘">제어기</button>
+            </div>
+          </div>
+
+          <aside>
+            <div class="card" style="position:sticky; top:92px; background:rgba(255,255,255,.02)">
+              <h3>상담 안내</h3>
+              <div class="meta">
+                - 이 상담은 “공식 공개 범위”에 한해 답변합니다.<br>
+                - 보안/안전과 관련된 상세(장치 원리/해제/위치 등)는 제한됩니다.<br>
+                - <b>등장인물로 로그인</b>하면 말투가 바뀝니다.
+              </div>
+              <div class="hr"></div>
+              <h3>추천 질문</h3>
+              <ul class="clean">
+                <li>“위상 공명이 뭐야?”</li>
+                <li>“특능 계열 분류 알려줘”</li>
+                <li>“규칙 위반하면 벌점?”</li>
+                <li>“라이벌 학교 교류전 있어?”</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <!-- World (Restricted) -->
+      <div class="card col-12 section" id="world">
+        <div class="section-title">
+          <h2>세계관 문서 <span class="muted">(Restricted)</span></h2>
+          <div class="right">
+            <span class="tag">비번 필요</span><span class="tag">1234</span><span class="tag">연출용 잠금</span>
+          </div>
+        </div>
+
+        <div id="worldLocked" class="lockbox">
+          <h3>접근 제한</h3>
+          <div class="meta">
+            본 문서는 <b>Restricted</b> 등급입니다.  
+            접근 코드(비밀번호)를 입력하세요. <span class="small">(힌트: 1234)</span>
+          </div>
+          <div class="formrow" style="margin-top:12px">
+            <input id="worldPass" class="input two" type="password" placeholder="Access Code" />
+            <button class="btn warn two" id="worldUnlockBtn" type="button">해제</button>
+          </div>
+          <div class="small" style="margin-top:10px">
+            * GitHub Pages는 서버가 없으므로 이 잠금은 “연출용”입니다.
+          </div>
+        </div>
+
+        <div id="worldOpen" class="world-content hidden">
+          <div class="kicker"><span class="dot"></span> RESTRICTED · INTERNAL OVERVIEW (FICTION)</div>
+          <h3 style="margin:12px 0 8px">세계관 요약</h3>
+          <div class="meta">
+            - 배경: 2035년 전후 대한민국, 거의 현실과 같은 현대 사회<br>
+            - 인구 1~2%가 특이능력사용자(특능자), 상위 0.01%는 최상위 전력<br>
+            - 2028 <b>한강 브레이크 사건</b> 이후 전 세계 공개<br>
+            - 한국은 <b>특이능력 관리 및 육성법</b> 및 영재 고등교육 체계 존재
+          </div>
+
+          <div class="worldgrid">
+            <div>
+              <h3>서특영(서울시 특이능력 영재학교)</h3>
+              <div class="meta">
+                - 위치: 서울 동북부 재개발 구역(겉보기 평범한 사립고)<br>
+                - 목적(내부): 국가 전략 전력 양성 + 폭주 감시·연구<br>
+                - 기숙사: 안전 목적의 <b>능력 제어기</b> 설치(대다수 약화/무력화)
+              </div>
+              <div class="notice">
+                <div>⚠️</div>
+                <div><strong>보안 메모</strong><br>
+                  장치의 상세 원리/해제/배치 정보는 공개 금지(연출).
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3>특능 분류</h3>
+              <table class="table">
+                <tr><th>계열</th><td>물리 / 공간 / 정신 / 원소 / 정보 / 특수 / 복합</td></tr>
+                <tr><th>등급</th><td>E · D · C · B · A · S · X(비공식)</td></tr>
+                <tr><th>핵심 개념</th><td>위상 공명(뇌·신경계 ↔ 차원 에너지 공명)</td></tr>
+                <tr><th>학생 은어</th><td>“선이 좋다”, “선이 꼬였다”</td></tr>
+              </table>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <h3>주요 이벤트 훅</h3>
+          <ul class="clean">
+            <li>뒤산 보호구역 봉인 탈출 사건 → 첫 실전 수색·포획</li>
+            <li>도심 야간 헌팅 실습 중 계획 밖 A-급 위협 등장</li>
+            <li>교내 능력 리그 / 전국 선수권 / 라이벌 학교 교류전</li>
+            <li>방학 캠프·수련회에서 예상치 못한 상위 등급 노출</li>
+          </ul>
+
+          <div class="hr"></div>
+
+          <h3>주요 NPC(요약)</h3>
+          <table class="table">
+            <tr><th>아이리스</th><td>학생회장 · A+ (소문: S 잠재) · 치유 특화 · 책임감 강함</td></tr>
+            <tr><th>레온</th><td>물리계 A · 전투반 부반장 · 차분/묵직 · 방어/반응 강화</td></tr>
+            <tr><th>미레나</th><td>정신/감정계 B · 감정 읽기 · 소문/커뮤니티 좋아함</td></tr>
+            <tr><th>카일</th><td>공간·중력 복합 B · 이동/전투 집중 · 말수 적음</td></tr>
+            <tr><th>하린</th><td>보호/장벽 A- · 냉정한 언니 타입 · 방어 특화</td></tr>
+            <tr><th>루카</th><td>번개 원소 B+ · 장난기/분위기 메이커 · 실전 급진지</td></tr>
+          </table>
+
+          <div class="hr"></div>
+          <button class="btn" id="worldLockBtn" type="button">다시 잠그기</button>
+        </div>
+      </div>
     </section>
 
-    <section class="calendar">
-      <div class="section-title">학사 일정</div>
-      <ul>
-        <li>3월 2일: 입학식</li>
-        <li>4월 20일: 중간 평가</li>
-        <li>7월 15일: 1학기 종료</li>
-      </ul>
-    </section>
+    <footer class="footer">
+      <div class="mono">DISCLAIMER</div>
+      본 사이트는 세계관/창작 목적의 가상 학교 웹페이지입니다. 실제 기관과 무관합니다.
+      <div class="hr"></div>
+      <div class="small">TIP: 이미지 교체만 해도 “공식 포털” 느낌이 더 올라갑니다.</div>
+    </footer>
+  </main>
+
+  <!-- Login Modal -->
+  <div class="modal-backdrop" id="modalBack">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="로그인">
+      <div class="modal-head">
+        <div class="title">포털 로그인 <span class="muted">(연출)</span></div>
+        <button class="iconbtn" id="modalClose" type="button" aria-label="닫기">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="meta">
+          로그인하면 포털이 “사용자/등장인물” 기준으로 UI와 말투가 바뀝니다.
+          <br><span class="small">※ 연출용 로그인입니다. 그래도 충분히 그럴듯하게.</span>
+        </div>
+
+        <div class="hr"></div>
+
+        <div class="formrow">
+          <div class="two">
+            <div class="small">사용자 유형</div>
+            <select class="select" id="roleSel">
+              <option value="GUEST">게스트</option>
+              <option value="STUDENT">학생</option>
+              <option value="PARENT">학부모</option>
+              <option value="STAFF">교직원</option>
+            </select>
+          </div>
+
+          <div class="two">
+            <div class="small">프로필(등장인물)</div>
+            <select class="select" id="charSel">
+              <option value="NONE">선택 안 함</option>
+              <option value="IRIS">아이리스 (학생회장)</option>
+              <option value="LEON">레온 (전투반 부반장)</option>
+              <option value="MIRENA">미레나 (감정계)</option>
+              <option value="KYLE">카일 (중력/공간)</option>
+              <option value="HARIN">하린 (장벽)</option>
+              <option value="LUKA">루카 (번개)</option>
+            </select>
+          </div>
+
+          <div class="two" style="flex: 1 1 100%">
+            <div class="small">액세스 코드(연출)</div>
+            <input class="input" id="loginCode" type="password" placeholder="예: 1234 (세계관 문서 해제 코드)" />
+          </div>
+        </div>
+
+        <div class="hint">
+          <b>TIP</b><br>
+          - 세계관 문서(Restricted)는 코드 <span class="kbd">1234</span> 입력 시 열립니다.<br>
+          - “교직원 + 1234”로 로그인하면 권한 표기가 더 ‘공식 포털’처럼 보입니다.
+        </div>
+
+        <div class="row" style="margin-top:12px">
+          <button class="btn primary" id="loginDo" type="button">로그인</button>
+          <button class="btn" id="logoutDo" type="button">로그아웃</button>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- 오른쪽 -->
-  <div>
-    <section>
-      <div class="section-title">온라인 입학 상담</div>
-      <form>
-        <label>이름</label>
-        <input type="text" placeholder="이름 입력" />
-        <label>구분</label>
-        <select>
-          <option>학생</option>
-          <option>학부모</option>
-        </select>
-        <label>문의 내용</label>
-        <textarea rows="5"></textarea>
-        <button type="button">상담 신청</button>
-      </form>
-    </section>
-
-    <section>
-      <div class="section-title">학교 안내</div>
-      <p style="font-size:14px; line-height:1.6">
-        본교는 미래 사회를 선도할 인재 양성을 목표로 하는
-        특성화 교육기관입니다.
-      </p>
-    </section>
+  <!-- Post Modal (B) -->
+  <div class="modal-backdrop" id="postBack">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="게시물">
+      <div class="modal-head">
+        <div class="title" id="postTitle">게시물</div>
+        <button class="iconbtn" id="postClose" type="button" aria-label="닫기">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="meta" id="postMeta">—</div>
+        <div class="hr"></div>
+        <div class="meta" id="postBody" style="white-space:pre-line">—</div>
+      </div>
+    </div>
   </div>
-</main>
 
-<footer>
-  본 사이트는 창작 세계관 기반의 가상 학교 홈페이지입니다.
-</footer>
+  <script>
+    // ---------- Helpers ----------
+    const $ = (q)=>document.querySelector(q);
+    const $$ = (q)=>document.querySelectorAll(q);
+    const clamp = (v,min,max)=>Math.max(min, Math.min(max, v));
+    const fmtPct = (n)=>`${Math.round(n*100)}%`;
 
-<!-- 로그인 -->
-<div class="modal" id="loginModal">
-  <div class="modal-content">
-    <h3>로그인</h3>
-    <label>구분</label>
-    <select id="role">
-      <option>학생</option>
-      <option>학부모</option>
-      <option>교직원</option>
-    </select>
-    <label>비밀번호</label>
-    <input type="password" id="pw" />
-    <button onclick="login()">확인</button>
-  </div>
-</div>
+    function jumpTo(sel){
+      const el = document.querySelector(sel);
+      if(!el) return;
+      el.scrollIntoView({behavior:'smooth', block:'start'});
+    }
 
-<script>
-function openLogin(){
-  document.getElementById("loginModal").style.display="block";
-}
-function login(){
-  const pw = document.getElementById("pw").value;
-  if(pw==="1234"){
-    alert("내부 문서 접근 권한이 부여되었습니다.");
-  }else{
-    alert("로그인 되었습니다.");
-  }
-  document.getElementById("loginModal").style.display="none";
-}
-</script>
+    // ---------- Slider (A) ----------
+    const slider = {
+      idx: 0,
+      timer: null,
+      intervalMs: 6500,
+      slides: [],
+      dots: []
+    };
 
+    function setSlide(i){
+      const n = slider.slides.length;
+      if(n === 0) return;
+      slider.idx = (i + n) % n;
+      slider.slides.forEach((s, k)=>s.classList.toggle("active", k === slider.idx));
+      slider.dots.forEach((d, k)=>d.classList.toggle("active", k === slider.idx));
+    }
+    function next(){ setSlide(slider.idx + 1); }
+    function prev(){ setSlide(slider.idx - 1); }
+    function startAuto(){
+      stopAuto();
+      slider.timer = setInterval(next, slider.intervalMs);
+    }
+    function stopAuto(){
+      if(slider.timer) clearInterval(slider.timer);
+      slider.timer = null;
+    }
+
+    // ---------- Nav active (IntersectionObserver) ----------
+    function setupNavHighlight(){
+      const sections = $$(".section");
+      const map = new Map();
+      $$("[data-nav]").forEach(a=>{
+        const href = a.getAttribute("href");
+        if(href && href.startsWith("#")) map.set(href, a);
+      });
+
+      const obs = new IntersectionObserver((entries)=>{
+        const visible = entries
+          .filter(e=>e.isIntersecting)
+          .sort((a,b)=>b.intersectionRatio - a.intersectionRatio)[0];
+        if(!visible) return;
+        const id = "#" + visible.target.id;
+        map.forEach((el)=>el.classList.remove("active"));
+        if(map.get(id)) map.get(id).classList.add("active");
+      }, { rootMargin: "-35% 0px -55% 0px", threshold:[0.05,0.12,0.2,0.35] });
+
+      sections.forEach(s=>obs.observe(s));
+    }
+
+    // ---------- Jump buttons ----------
+    $$("[data-jump]").forEach(b=>b.addEventListener("click", ()=>jumpTo(b.getAttribute("data-jump"))));
+
+    // ---------- Session / Login ----------
+    const SESSION_KEY = "SSA_PORTAL_SESSION_V2";
+    const WORLD_KEY = "SSA_WORLD_UNLOCK_V2";
+    const COUNSEL_KEY = "SSA_COUNSEL_REQ_V1";
+
+    const characters = {
+      NONE: { label:"", badge:"GUEST", tone:"neutral" },
+      IRIS: { label:"아이리스", badge:"A+ · COUNCIL", tone:"soft" },
+      LEON: { label:"레온", badge:"A · COMBAT", tone:"dry" },
+      MIRENA:{ label:"미레나", badge:"B · PSYCHE", tone:"tease" },
+      KYLE:  { label:"카일", badge:"B · GRAVITY", tone:"cold" },
+      HARIN: { label:"하린", badge:"A- · SHIELD", tone:"sharp" },
+      LUKA:  { label:"루카", badge:"B+ · LIGHTNING", tone:"fun" },
+    };
+
+    const chatContext = {
+      trust: 0,
+      risk: 0,
+      userRole: "GUEST",
+      userChar: "NONE"
+    };
+
+    function getSession(){
+      try { return JSON.parse(localStorage.getItem(SESSION_KEY) || "{}"); }
+      catch { return {}; }
+    }
+    function setSession(s){
+      localStorage.setItem(SESSION_KEY, JSON.stringify(s));
+      applySession();
+    }
+    function clearSession(){
+      localStorage.removeItem(SESSION_KEY);
+      applySession();
+    }
+
+    function applySession(){
+      const s = getSession();
+      const role = s.role || "GUEST";
+      const char = s.char || "NONE";
+      const who = (char !== "NONE" ? characters[char].label : role);
+      $("#who").textContent = who || "GUEST";
+
+      const isStaff = (role === "STAFF");
+      const isWorldUnlocked = (localStorage.getItem(WORLD_KEY) === "1");
+      $("#clearance").textContent = isWorldUnlocked ? (isStaff ? "RESTRICTED · STAFF" : "RESTRICTED") : "PUBLIC";
+
+      const wn = $("#worldNav");
+      if(isWorldUnlocked) wn.classList.remove("locked");
+      else wn.classList.add("locked");
+
+      chatContext.userRole = role;
+      chatContext.userChar = char;
+
+      // Portal gate
+      const allowPortal = (role === "STUDENT" || role === "PARENT" || role === "STAFF");
+      $("#portalGate").classList.toggle("hidden", allowPortal);
+      $("#portalBody").classList.toggle("hidden", !allowPortal);
+
+      renderDashboard();
+      renderCounselList();
+    }
+
+    // ---------- Modal open/close (Login) ----------
+    const modalBack = $("#modalBack");
+    function openModal(){ modalBack.style.display = "block"; }
+    function closeModal(){ modalBack.style.display = "none"; }
+    $("#loginBtn").addEventListener("click", openModal);
+    $("#modalClose").addEventListener("click", closeModal);
+    modalBack.addEventListener("click", (e)=>{ if(e.target === modalBack) closeModal(); });
+
+    // ---------- World Lock ----------
+    function unlockWorld(){
+      $("#worldLocked").classList.add("hidden");
+      $("#worldOpen").classList.remove("hidden");
+      localStorage.setItem(WORLD_KEY, "1");
+      applySession();
+    }
+    function lockWorld(){
+      $("#worldOpen").classList.add("hidden");
+      $("#worldLocked").classList.remove("hidden");
+      localStorage.removeItem(WORLD_KEY);
+      applySession();
+    }
+    $("#worldUnlockBtn").addEventListener("click", ()=>{
+      const pass = ($("#worldPass").value || "").trim();
+      if(pass === "1234"){
+        $("#worldPass").classList.remove("error");
+        unlockWorld();
+      }else{
+        $("#worldPass").classList.add("error");
+      }
+    });
+    $("#worldLockBtn").addEventListener("click", lockWorld);
+
+    // ---------- Board (B) Data + Modal ----------
+    const notices = [
+      {
+        date:"2035-03-10",
+        title:"1학기 능력기초 제어 평가 안내(시간 엄수)",
+        badge:"HOT",
+        meta:"공지 · 학사",
+        body:
+`1) 일시: 2035-03-10 09:00 ~ 12:00
+2) 장소: 실습동 A홀(공개 범위)
+3) 준비: 신분 확인(학생증), 지정 복장
+4) 유의: 무단 능력 사용 및 규정 위반 시 즉시 감점/제한 조치(연출)
+
+※ 본 안내는 ‘공개 범위’ 기준입니다. 세부 동선/구역 정보는 제한됩니다.`
+      },
+      {
+        date:"2035-04-02",
+        title:"보호구역 출입 통제 강화(안전 규정)",
+        badge:"SEC",
+        meta:"공지 · 안전",
+        body:
+`최근 안전 등급 재평가에 따라 보호구역 출입 통제가 강화됩니다.
+
+- 출입 가능: 승인된 교육/훈련/점검 인원(연출)
+- 출입 불가: 개인 단독 출입, 야간 임의 진입
+- 위반 시: 벌점 및 훈련 참여 제한
+
+※ ‘세부 위치/해제/우회’ 관련 질문은 안내하지 않습니다.`
+      },
+      {
+        date:"상시",
+        title:"22시 이후 기숙사 외부 적발 시 벌점(반복 시 훈련 제한)",
+        badge:"",
+        meta:"공지 · 생활",
+        body:
+`- 통금: 22:00 이후 외부 이동 제한(연출)
+- 반복 위반: 벌점 누적 → 훈련 제한 가능
+- 예외: 긴급 상황/공식 승인 동선`
+      }
+    ];
+
+    const letters = [
+      {
+        date:"2035-03-03",
+        title:"신입생 오리엔테이션 안내(보호자 동반 가능 범위)",
+        target:"학부모",
+        meta:"가정통신문 · 학사",
+        body:
+`- 일정: 2035-03-03 14:00
+- 안내: 공지된 구역에서만 동선 허용(연출)
+- 문의: 입학상담 AI 또는 포털 상담 신청`
+      },
+      {
+        date:"2035-03-18",
+        title:"기숙사 생활 수칙 및 안전 규정(요약)",
+        target:"학부모",
+        meta:"가정통신문 · 생활",
+        body:
+`- 야간 통행 제한 및 외부 출입 규정
+- 공동 생활 에티켓 및 안전 점검(연출)
+- 위반 시 벌점 체계(요약)
+
+※ 자세한 보안 항목은 공개 범위 외입니다.`
+      }
+    ];
+
+    // Post modal
+    const postBack = $("#postBack");
+    function openPostModal(item){
+      $("#postTitle").textContent = item.title;
+      $("#postMeta").textContent = `${item.date} · ${item.meta}`;
+      $("#postBody").textContent = item.body;
+      postBack.style.display = "block";
+    }
+    function closePostModal(){ postBack.style.display = "none"; }
+    $("#postClose").addEventListener("click", closePostModal);
+    postBack.addEventListener("click", (e)=>{ if(e.target === postBack) closePostModal(); });
+
+    function renderBoards(){
+      const nt = $("#noticeTbody");
+      const lt = $("#letterTbody");
+      nt.innerHTML = "";
+      lt.innerHTML = "";
+
+      notices.forEach((n)=>{
+        const tr = document.createElement("tr");
+        const b = n.badge === "HOT" ? `<span class="badge hot">HOT</span>` :
+                  n.badge === "SEC" ? `<span class="badge sec">SEC</span>` : `<span class="badge">NOTICE</span>`;
+        tr.innerHTML = `
+          <td class="muted">${n.date}</td>
+          <td class="titlecell">${escapeHtml(n.title)}</td>
+          <td>${b}</td>
+        `;
+        tr.querySelector(".titlecell").addEventListener("click", ()=>openPostModal(n));
+        nt.appendChild(tr);
+      });
+
+      letters.forEach((n)=>{
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td class="muted">${n.date}</td>
+          <td class="titlecell">${escapeHtml(n.title)}</td>
+          <td><span class="badge">${escapeHtml(n.target)}</span></td>
+        `;
+        tr.querySelector(".titlecell").addEventListener("click", ()=>openPostModal(n));
+        lt.appendChild(tr);
+      });
+    }
+
+    // ---------- Dashboard (C) ----------
+    function renderDashboard(){
+      const s = getSession();
+      const role = s.role || "GUEST";
+      const char = s.char || "NONE";
+
+      if(!(role === "STUDENT" || role === "PARENT" || role === "STAFF")) return;
+
+      // 샘플 값(등장인물에 따라 살짝 다르게)
+      const seed = (char === "IRIS") ? 0.96 :
+                   (char === "LEON") ? 0.93 :
+                   (char === "MIRENA") ? 0.90 :
+                   (char === "KYLE") ? 0.92 :
+                   (char === "HARIN") ? 0.95 :
+                   (char === "LUKA") ? 0.88 : 0.91;
+
+      const att = clamp(seed, 0.70, 0.99);
+      const gpa = clamp(3.1 + (seed-0.85)*3.0, 2.4, 4.3);
+
+      $("#attRate").textContent = fmtPct(att);
+      $("#gpa").textContent = gpa.toFixed(2);
+
+      $("#attBar").style.width = `${Math.round(att*100)}%`;
+      $("#gpaBar").style.width = `${Math.round((gpa/4.3)*100)}%`;
+
+      $("#attFlag").textContent = att >= 0.92 ? "NORMAL" : (att >= 0.85 ? "CHECK" : "ALERT");
+      $("#attFlag").className = att >= 0.92 ? "badge sec" : (att >= 0.85 ? "badge hot" : "badge hot");
+
+      $("#gradeFlag").textContent = role === "PARENT" ? "VIEW" : (role === "STAFF" ? "ADMIN" : "STUDENT");
+      $("#attHint").textContent = "출결 요약은 포털 연출용 샘플입니다.";
+      $("#gpaHint").textContent = "성적 상세 항목은 공개 범위 기준으로 표시됩니다(연출).";
+
+      // rows
+      $("#attRow1").textContent = `${Math.round(att*20)}/20 출석`;
+      $("#attRow2").textContent = `${Math.max(0, Math.round((1-att)*8))}회`;
+      $("#attRow3").textContent = `${Math.max(0, Math.round((1-att)*4))}일`;
+      $("#g1").textContent = "A (심화)";
+      $("#g2").textContent = (seed > 0.92 ? "A+" : "A");
+      $("#g3").textContent = "A (확장)";
+      $("#g4").textContent = (seed > 0.93 ? "A+" : seed > 0.90 ? "A" : "B+");
+    }
+
+    // Tabs
+    function setPortalTab(key){
+      $$(".tab").forEach(t=>t.classList.toggle("active", t.dataset.tab === key));
+      $("#tab_att").classList.toggle("hidden", key !== "att");
+      $("#tab_grade").classList.toggle("hidden", key !== "grade");
+      $("#tab_counsel").classList.toggle("hidden", key !== "counsel");
+    }
+    $$(".tab").forEach(t=>t.addEventListener("click", ()=>setPortalTab(t.dataset.tab)));
+
+    // Counsel storage
+    function loadCounsel(){
+      try { return JSON.parse(localStorage.getItem(COUNSEL_KEY) || "[]"); }
+      catch { return []; }
+    }
+    function saveCounsel(list){
+      localStorage.setItem(COUNSEL_KEY, JSON.stringify(list));
+      renderCounselList();
+    }
+    function renderCounselList(){
+      const list = loadCounsel();
+      const box = $("#cList");
+      if(!box) return;
+      if(list.length === 0){
+        box.innerHTML = `<span class="muted">신청 내역이 없습니다.</span>`;
+        return;
+      }
+      box.innerHTML = list.slice().reverse().map(x=>{
+        return `<div style="margin-bottom:10px">
+          <span class="badge">${escapeHtml(x.type)}</span>
+          <span class="muted"> · ${escapeHtml(x.when || "미정")} · ${escapeHtml(x.who)}</span><br>
+          <span>${escapeHtml(x.msg)}</span>
+        </div>`;
+      }).join("");
+    }
+    $("#cSubmit")?.addEventListener("click", ()=>{
+      const s = getSession();
+      const role = s.role || "GUEST";
+      if(!(role === "STUDENT" || role === "PARENT" || role === "STAFF")){
+        alert("로그인 후 이용 가능합니다.");
+        return;
+      }
+      const type = $("#cType").value;
+      const when = ($("#cWhen").value||"").trim();
+      const msg = ($("#cMsg").value||"").trim();
+      if(!msg){
+        $("#cMsg").classList.add("error");
+        return;
+      }
+      $("#cMsg").classList.remove("error");
+      const who = (s.char && s.char !== "NONE") ? characters[s.char].label : role;
+      const list = loadCounsel();
+      list.push({ type, when, msg, who, ts: Date.now() });
+      saveCounsel(list);
+      $("#cWhen").value = "";
+      $("#cMsg").value = "";
+    });
+    $("#cClear")?.addEventListener("click", ()=>{
+      localStorage.removeItem(COUNSEL_KEY);
+      renderCounselList();
+    });
+
+    // ---------- Chat (D: persona style) ----------
+    function escapeHtml(s){
+      return (s||"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;");
+    }
+    function addMsg(role, html){
+      const log = $("#chatLog");
+      const wrap = document.createElement("div");
+      wrap.className = `msg ${role}`;
+      const bubble = document.createElement("div");
+      bubble.className = "bubble";
+      bubble.innerHTML = html;
+      wrap.appendChild(bubble);
+      log.appendChild(wrap);
+      log.scrollTop = log.scrollHeight;
+    }
+    function sysMsg(t){ addMsg("sys", escapeHtml(t)); }
+    function meMsg(t){ addMsg("me", escapeHtml(t)); }
+    function botMsg(t){ addMsg("bot", t.replaceAll("\n","<br>")); }
+
+    function scoreLine(){
+      const t = clamp(chatContext.trust, -4, 8);
+      const r = clamp(chatContext.risk, 0, 10);
+      const tLabel = (t>=6) ? "A" : (t>=3) ? "B" : (t>=0) ? "C" : "D";
+      const rLabel = (r>=7) ? "높음" : (r>=4) ? "중간" : "낮음";
+      return `<span class="small">상담 지표: 신뢰도 <b>${tLabel}</b> / 안전위험 <b>${rLabel}</b></span>`;
+    }
+
+    function classify(input){
+      const s = input.toLowerCase();
+      const has = (...kw)=>kw.some(k=>s.includes(k));
+      if(has("안녕","hello","hi")) return "hello";
+      if(has("입학","지원","전형","테스트","면접","스카우트")) return "admission";
+      if(has("기숙사","통금","22","생활")) return "dorm";
+      if(has("규칙","벌점","금지","징계")) return "rules";
+      if(has("브레이크","한강","2028")) return "break";
+      if(has("능력","특능","등급","e급","a급","s급","x급","위상","공명","계열")) return "power";
+      if(has("제어기","억제","무력화","컨트롤")) return "control";
+      if(has("아이리스","레온","미레나","카일","하린","루카")) return "npc";
+      if(has("위치","오시는","지도","서울")) return "location";
+      if(has("도움","메뉴","사용법","뭐할")) return "help";
+      return "unknown";
+    }
+
+    function personaPrefix(){
+      const role = chatContext.userRole || "GUEST";
+      const char = chatContext.userChar || "NONE";
+      const name = (char !== "NONE") ? characters[char].label : (role === "PARENT" ? "보호자" : role);
+      return `<span class="mono">[PORTAL]</span> <b>${name}</b> · `;
+    }
+
+    function stylizeByCharacter(textHtml){
+      const c = chatContext.userChar || "NONE";
+      if(c === "NONE") return textHtml;
+
+      // 말투만 바꾸고, 정보는 그대로 유지 (간지 + 공식 느낌)
+      const wrap = (head, tail="") => `${personaPrefix()}${head}<br>${textHtml}${tail ? `<br>${tail}` : ""}`;
+
+      switch(c){
+        case "IRIS":
+          return wrap("안내 도와드릴게요. 무리하지 말고 차근차근 확인해요.", "<span class='small'>…필요하면 제가 다시 정리해드릴게요.</span>");
+        case "LEON":
+          return wrap("요점만 말한다.", "<span class='small'>필요한 항목만 더 물어봐.</span>");
+        case "MIRENA":
+          return wrap("오케이, 지금 질문… 재밌네.", "<span class='small'>말 돌리면 바로 티 나. 정확히 물어봐.</span>");
+        case "KYLE":
+          return wrap("짧게 답한다.", "<span class='small'>불명확하면 다시 질문해.</span>");
+        case "HARIN":
+          return wrap("규정 우선. 감정은 나중에.", "<span class='small'>선 넘는 질문은 여기서 끝.</span>");
+        case "LUKA":
+          return wrap("좋아, 빠르게 정리해줄게.", "<span class='small'>더 궁금하면 한 줄로 던져.</span>");
+        default:
+          return textHtml;
+      }
+    }
+
+    function reply(kind, input){
+      const base = (html)=>`${html}<br>${scoreLine()}`;
+
+      switch(kind){
+        case "hello":
+          chatContext.trust += 1;
+          return stylizeByCharacter(base(`안녕하세요. <b>입학상담 AI</b>입니다.<br>
+          원하시는 항목: 입학 / 규칙 / 기숙사 / 특능 분류 / 주요 NPC`));
+
+        case "help":
+          return stylizeByCharacter(base(`가능한 질문 예시:<br>
+          - “입학 전형 요약”<br>
+          - “A급이랑 S급 차이”<br>
+          - “기숙사 통금 규칙”<br>
+          - “한강 브레이크 사건 요약”`));
+
+        case "location":
+          chatContext.trust += 1;
+          return stylizeByCharacter(base(`서특영은 <b>서울 동북부 재개발 구역</b>에 위치한 것으로 등록되어 있습니다(설정).<br>
+          방문은 <b>사전 승인</b>이 필요하며 보안 게이트를 통과합니다.`));
+
+        case "admission":
+          chatContext.trust += 2;
+          return stylizeByCharacter(base(`<b>입학(영재 선발) 요약</b><br>
+          1) 비공개 스카우트: 사건/관측으로 <b>능력 확인</b> 시 연락 가능<br>
+          2) 위상 공명 테스트: 계열/등급 분류(E–S, X는 비공식)<br>
+          3) 적응 평가: 규정 준수 + 기초 제어 + 기숙사 적응<br>
+          <div class="notice"><div>⚠️</div><div><strong>안내</strong><br>세부 일정·시설 정보는 합격자 안내 범위에서 제공됩니다.</div></div>`));
+
+        case "rules":
+          chatContext.trust += 1;
+          chatContext.risk += 1;
+          return stylizeByCharacter(base(`<b>핵심 교칙(요약)</b><br>
+          - 무단 능력 사용 금지(수업·훈련·공식 이벤트만 예외)<br>
+          - 한강 주변 단독 출입 금지<br>
+          - 22시 이후 기숙사 외부 적발 시 벌점<br>
+          - 보안 구역 무단 접근 금지`));
+
+        case "dorm":
+          chatContext.trust += 1;
+          return stylizeByCharacter(base(`<b>기숙사 생활(공개 범위)</b><br>
+          - 야간 통행 제한(22시)<br>
+          - 생활 안전을 위한 설비 상시 가동(세부 비공개)<br>
+          - 위반 시 벌점/훈련 제한 가능`));
+
+        case "power":
+          chatContext.trust += 1;
+          return stylizeByCharacter(base(`<b>특능 분류(공개 범위)</b><br>
+          - 계열: 물리/공간/정신/원소/정보/특수/복합<br>
+          - 등급: E–D–C–B–A–S (X는 공식 문서 미기재)<br>
+          - 핵심: <b>위상 공명</b>(뇌·신경계 ↔ 차원 에너지 공명)`));
+
+        case "break":
+          chatContext.trust += 1;
+          return stylizeByCharacter(base(`<b>2028 한강 브레이크 사건</b><br>
+          능력 존재가 전 세계에 공식 공개된 계기로 기록되어 있습니다(설정).<br>
+          이후 각국이 관리·양성 기관을 설립했고, 한국도 제도 체계를 갖추게 됩니다.`));
+
+        case "control":
+          chatContext.risk += 2;
+          return stylizeByCharacter(base(`<b>능력 제어 설비</b>는 학생 안전을 위해 존재합니다.<br>
+          원리/위치/해제 방식 등은 <b>안전 규정상 공개하지 않습니다.</b><br>
+          대신 “제어 훈련 커리큘럼(공개 범위)” 안내가 필요하신가요?`));
+
+        case "npc": {
+          const s = input.toLowerCase();
+          const line = (t)=>stylizeByCharacter(base(t));
+          if(s.includes("아이리스")) return line(`<b>아이리스</b> · 학생회장 · A+(소문: S 잠재) · 치유 특화 · 책임감 강함`);
+          if(s.includes("레온")) return line(`<b>레온</b> · 물리계 A · 전투반 부반장 · 차분/묵직 · 방어/반응 강화`);
+          if(s.includes("미레나")) return line(`<b>미레나</b> · 정신/감정계 B · 감정 읽기 · 소문/커뮤니티 선호`);
+          if(s.includes("카일")) return line(`<b>카일</b> · 공간·중력 복합 B · 이동 특화 · 말수 적고 집중형`);
+          if(s.includes("하린")) return line(`<b>하린</b> · 보호/장벽 A- · 냉정한 언니 타입 · 방어 특화`);
+          if(s.includes("루카")) return line(`<b>루카</b> · 번개 원소 B+ · 분위기 메이커 · 실전 급진지`);
+          return stylizeByCharacter(base(`이름을 정확히 입력해 주세요: 아이리스/레온/미레나/카일/하린/루카`));
+        }
+
+        default:
+          chatContext.trust -= 1;
+          return stylizeByCharacter(base(`그 질문은 “공식 공개 범위” 밖이거나 표현이 모호합니다.<br>
+          이렇게 물어보면 빨라요: “입학 전형 요약” / “기숙사 규칙” / “특능 분류” / “한강 브레이크”`));
+      }
+    }
+
+    function send(){
+      const input = $("#chatInput");
+      const text = (input.value || "").trim();
+      if(!text) return;
+      meMsg(text);
+      input.value = "";
+
+      const kind = classify(text);
+      const res = reply(kind, text);
+      setTimeout(()=>botMsg(res), 220);
+    }
+    function quickSend(text){
+      $("#chatInput").value = text;
+      send();
+    }
+
+    // ---------- Login handlers ----------
+    $("#loginDo").addEventListener("click", ()=>{
+      const role = $("#roleSel").value;
+      const char = $("#charSel").value;
+      const code = ($("#loginCode").value || "").trim();
+
+      if(code === "1234"){
+        $("#loginCode").classList.remove("error");
+        unlockWorld();
+      }
+
+      setSession({ role, char });
+      closeModal();
+
+      sysMsg(`SYSTEM: 세션 갱신됨 · ROLE=${role} · PROFILE=${char}`);
+      botMsg(`${personaPrefix()}접속 확인 완료. 포털 표시가 갱신되었습니다.`);
+    });
+
+    $("#logoutDo").addEventListener("click", ()=>{
+      clearSession();
+      localStorage.removeItem(WORLD_KEY);
+      closeModal();
+      sysMsg(`SYSTEM: 로그아웃 완료 · 권한 초기화`);
+      botMsg(`${personaPrefix()}로그아웃되었습니다. Restricted 문서 접근이 잠겼습니다.`);
+      lockWorld();
+    });
+
+    // ---------- Init ----------
+    window.addEventListener("DOMContentLoaded", ()=>{
+      // Slider init
+      slider.slides = Array.from($$("#slides .slide"));
+      const dotsWrap = $("#dots");
+      dotsWrap.innerHTML = "";
+      slider.slides.forEach((_, i)=>{
+        const b = document.createElement("button");
+        b.className = "dotbtn" + (i===0 ? " active" : "");
+        b.type = "button";
+        b.setAttribute("aria-label", `슬라이드 ${i+1}`);
+        b.addEventListener("click", ()=>{ setSlide(i); startAuto(); });
+        dotsWrap.appendChild(b);
+        slider.dots.push(b);
+      });
+      $("#nextBtn").addEventListener("click", ()=>{ next(); startAuto(); });
+      $("#prevBtn").addEventListener("click", ()=>{ prev(); startAuto(); });
+      $("#slides").addEventListener("mouseenter", stopAuto);
+      $("#slides").addEventListener("mouseleave", startAuto);
+      startAuto();
+
+      // Boards init
+      renderBoards();
+
+      // World state restore
+      if(localStorage.getItem(WORLD_KEY) === "1"){
+        unlockWorld();
+      }else{
+        lockWorld();
+      }
+
+      // Apply session
+      applySession();
+
+      // Nav highlight
+      setupNavHighlight();
+
+      // Chat init
+      sysMsg("SYSTEM: 접속 기록은 안전 규정에 따라 일부 보관됩니다. (세계관 연출)");
+      botMsg(`${personaPrefix()}안녕하세요. <b>입학상담 AI</b>입니다. 무엇을 도와드릴까요?<br><span class="small">(입학/교칙/기숙사/특능/브레이크/NPC)</span>`);
+      $("#sendBtn").addEventListener("click", send);
+      $("#chatInput").addEventListener("keydown", (e)=>{ if(e.key === "Enter") send(); });
+      $$("[data-quick]").forEach(b=>b.addEventListener("click", ()=>quickSend(b.getAttribute("data-quick"))));
+    });
+  </script>
 </body>
 </html>
