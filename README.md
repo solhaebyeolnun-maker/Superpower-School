@@ -35,20 +35,14 @@
 ---
 
 ## 기술 스택
-- HTML / CSS / JavaScript
+- HTML 등
 - GitHub Pages 기반 정적 배포
-- 외부 서버 및 실시간 API 미사용
+- API 사용
 
 ---
 
 ## 배포 방식 (GitHub Pages)
 본 프로젝트는 GitHub Pages를 통해 배포됩니다.
-
-1. Repository → **Settings**
-2. **Pages** 메뉴 선택
-3. Source: *Deploy from a branch*
-4. Branch: `main` / Folder: `/ (root)`
-5. 저장 후 생성된 URL을 통해 접속
 
 ---
 
