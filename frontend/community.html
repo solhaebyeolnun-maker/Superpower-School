@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>커뮤니티 - 서울시 특이능력 영재학교</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+<a class="skip-link" href="#main">본문 바로가기</a>
+<header>
+  <nav class="navbar">
+    <div class="brand"><div class="logo">S</div><div>서울시 특이능력 영재학교</div></div>
+    <div class="nav-links">
+      <a href="index.html">홈</a>
+      <a href="about.html">학교 소개</a>
+      <a href="activities.html">교육 활동</a>
+      <a href="notice.html">알림마당</a>
+      <a href="support.html">학습·지원</a>
+      <a href="community.html" class="active">커뮤니티</a>
+      <a href="lore.html">세계관 문서</a>
+    </div>
+  </nav>
+</header>
+<main id="main" class="layout">
+  <section class="main">
+    <section class="hero card">
+      <div>
+        <div class="badge">실시간 커뮤니티</div>
+        <h1>자유게시판 · 기숙사 라운지 · 훈련동</h1>
+        <p class="muted">데모: BroadcastChannel / 서버: WebSocket 예정. NPC 채팅 로그 기본 제공.</p>
+      </div>
+      <div class="visual"><img src="https://files.catbox.moe/qpi9s2.png" alt="커뮤니티" /></div>
+    </section>
+    <section class="card">
+      <div class="grid" style="grid-template-columns:1fr 320px; gap:1rem;">
+        <div class="chat-window" id="community-log"></div>
+        <div class="card">
+          <label>채널 선택
+            <select id="channel-select">
+              <option>자유게시판</option>
+              <option>기숙사 라운지</option>
+              <option>훈련동</option>
+            </select>
+          </label>
+          <form id="community-form" style="margin-top:0.6rem; display:flex; gap:0.4rem;">
+            <input placeholder="메시지" required />
+            <button type="submit">전송</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </section>
+</main>
+<script type="module" src="assets/js/community.js"></script>
+</body>
+</html>

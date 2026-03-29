@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>세계관 문서 - 서울시 특이능력 영재학교</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+<a class="skip-link" href="#main">본문 바로가기</a>
+<header>
+  <nav class="navbar">
+    <div class="brand"><div class="logo">S</div><div>서울시 특이능력 영재학교</div></div>
+    <div class="nav-links">
+      <a href="index.html">홈</a>
+      <a href="about.html">학교 소개</a>
+      <a href="activities.html">교육 활동</a>
+      <a href="notice.html">알림마당</a>
+      <a href="support.html">학습·지원</a>
+      <a href="community.html">커뮤니티</a>
+      <a href="lore.html" class="active">세계관 문서</a>
+    </div>
+  </nav>
+</header>
+<main id="main" class="layout">
+  <section class="main">
+    <section class="hero card">
+      <div>
+        <div class="badge">비밀번호 1234</div>
+        <h1>세계관 원문 보호</h1>
+        <p class="muted">잠금 해제 후에도 검색/목차/프린트 지원</p>
+      </div>
+    </section>
+    <section class="card" id="lore-gate">
+      <label>비밀번호<input id="lore-pass" type="password" placeholder="1234" /></label>
+      <button id="lore-submit" style="margin-top:0.6rem;">열람</button>
+    </section>
+    <section class="card">
+      <div class="card-title">세계관 문서</div>
+      <pre id="lore-body" style="white-space:pre-wrap; line-height:1.4;"></pre>
+    </section>
+  </section>
+</main>
+<script type="module" src="assets/js/lore.js"></script>
+</body>
+</html>

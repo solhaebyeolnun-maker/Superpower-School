@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>학습·상담 지원 - 서울시 특이능력 영재학교</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+<a class="skip-link" href="#main">본문 바로가기</a>
+<header>
+  <nav class="navbar">
+    <div class="brand"><div class="logo">S</div><div>서울시 특이능력 영재학교</div></div>
+    <div class="nav-links">
+      <a href="index.html">홈</a>
+      <a href="about.html">학교 소개</a>
+      <a href="activities.html">교육 활동</a>
+      <a href="notice.html">알림마당</a>
+      <a href="support.html" class="active">학습·지원</a>
+      <a href="community.html">커뮤니티</a>
+      <a href="lore.html">세계관 문서</a>
+    </div>
+    <div class="actions">
+      <button class="button ghost" data-theme-toggle>다크모드</button>
+      <a class="button" href="login.html">로그인</a>
+    </div>
+  </nav>
+</header>
+<main id="main" class="layout">
+  <aside class="sidebar">
+    <div class="card">
+      <div class="card-title">내 일정/알림</div>
+      <p class="muted">로그인 사용자별 위젯</p>
+    </div>
+  </aside>
+  <section class="main">
+    <section class="hero card">
+      <div>
+        <div class="badge">학습/상담</div>
+        <h1>급식 · 자료실 · 도서관 · 상담</h1>
+        <p class="muted">식단은 날짜 시드 랜덤, 자료실/도서관은 가상 업로드/대출 UI를 제공합니다.</p>
+      </div>
+      <div class="visual"><img src="https://files.catbox.moe/esy4a8.PNG" alt="지원" /></div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <div class="card-title">급식 식단</div>
+        <div class="grid">
+          <div class="card">에너지 플랜터 샐러드</div>
+          <div class="card">오메가-브리오 브로스</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">학습 자료실</div>
+        <p class="muted">과목별 자료/과제 업로드 (로그인 필요)</p>
+        <div class="badge-bar"><span class="chip">물리계</span><span class="chip">공간계</span><span class="chip">정신계</span></div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <div class="card-title">도서관</div>
+        <p class="muted">검색/대출/반납 UI · 상태 표시</p>
+        <div class="table">
+          <div>《위상 공명 개론》 · 대출중</div>
+          <div>《한강 브레이크 사건 기록》 · 열람 가능</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">상담 AI</div>
+        <p class="muted">규칙 기반 상담 챗봇</p>
+        <div class="chat-window" aria-live="polite"></div>
+      </div>
+    </section>
+  </section>
+</main>
+<footer class="footer"><small>학습·상담 지원 센터</small></footer>
+<script type="module" src="assets/js/ui.js"></script>
+</body>
+</html>
