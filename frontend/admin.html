@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>관리자 대시보드 - 서울시 특이능력 영재학교</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+<a class="skip-link" href="#main">본문 바로가기</a>
+<header>
+  <nav class="navbar">
+    <div class="brand"><div class="logo">S</div><div>서울시 특이능력 영재학교</div></div>
+    <div class="nav-links">
+      <a href="index.html">홈</a>
+      <a href="about.html">학교 소개</a>
+      <a href="activities.html">교육 활동</a>
+      <a href="notice.html">알림마당</a>
+      <a href="support.html">학습·지원</a>
+      <a href="community.html">커뮤니티</a>
+      <a href="lore.html">세계관 문서</a>
+    </div>
+    <div class="actions">
+      <button class="button ghost" onclick="location.href='index.html'">메인</button>
+    </div>
+  </nav>
+</header>
+<main id="main" class="layout">
+  <section class="main">
+    <section class="hero card">
+      <div>
+        <div class="badge">관리 권한</div>
+        <h1>공지, 가정통신문, 일정 관리</h1>
+        <p class="muted">developer(admin)만 접근. 데모/서버 모드 공통 UX.</p>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <div class="card-title">공지 작성</div>
+        <form id="notice-form" class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:0.5rem;">
+          <input name="title" placeholder="제목" required />
+          <select name="category"><option value="안전">안전</option><option value="훈련">훈련</option><option value="생활">생활</option></select>
+          <textarea name="body" rows="3" placeholder="본문"></textarea>
+          <button type="submit">등록</button>
+        </form>
+      </div>
+      <div class="card">
+        <div class="card-title">공지 목록</div>
+        <table class="table"><thead><tr><th>제목</th><th>분류</th><th>작성일</th></tr></thead><tbody id="admin-notices"></tbody></table>
+      </div>
+    </section>
+  </section>
+</main>
+<script type="module" src="assets/js/admin.js"></script>
+</body>
+</html>
